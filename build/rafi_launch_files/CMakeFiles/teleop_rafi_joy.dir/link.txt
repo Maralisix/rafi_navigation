@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libteleop_rafi_joy.so -o /home/brazo/workspace/rafi_ws/devel/lib/libteleop_rafi_joy.so CMakeFiles/teleop_rafi_joy.dir/src/teleop_rafi_joy.cpp.o 

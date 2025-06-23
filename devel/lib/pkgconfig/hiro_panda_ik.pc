@@ -1,0 +1,8 @@
+prefix=/home/brazo/workspace/rafi_ws/devel
+
+Name: hiro_panda_ik
+Description: Description of hiro_panda_ik
+Version: 0.0.1
+Cflags: -I/home/brazo/workspace/rafi_ws/src/HIRO_Panda_TRAC_IK/include -I/home/brazo/libfranka/include
+Libs: -L${prefix}/lib -lhiro_panda_ik_controllers /home/brazo/libfranka/build/libfranka.so.0.9.2
+Requires: controller_interface franka_control hardware_interface franka_hw message_runtime pluginlib realtime_tools roscpp geometry_msgs

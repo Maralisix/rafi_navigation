@@ -1,0 +1,7 @@
+set(franka_lock_unlock_SETUP_PY_SETUP_MODULE "distutils.core")
+set(franka_lock_unlock_SETUP_PY_VERSION "4.2.1")
+set(franka_lock_unlock_SETUP_PY_SCRIPTS "__init__.py")
+set(franka_lock_unlock_SETUP_PY_PACKAGES "")
+set(franka_lock_unlock_SETUP_PY_PACKAGE_DIRS "")
+set(franka_lock_unlock_SETUP_PY_MODULES "")
+set(franka_lock_unlock_SETUP_PY_MODULE_DIRS "")

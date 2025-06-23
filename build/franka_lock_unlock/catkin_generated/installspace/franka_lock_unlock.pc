@@ -1,0 +1,8 @@
+prefix=/home/brazo/workspace/rafi_ws/install
+
+Name: franka_lock_unlock
+Description: Description of franka_lock_unlock
+Version: 4.2.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

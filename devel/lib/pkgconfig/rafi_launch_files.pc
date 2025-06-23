@@ -1,0 +1,8 @@
+prefix=/home/brazo/workspace/rafi_ws/devel
+
+Name: rafi_launch_files
+Description: Description of rafi_launch_files
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp sensor_msgs std_msgs

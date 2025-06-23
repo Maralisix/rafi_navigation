@@ -1,0 +1,8 @@
+prefix=/home/brazo/workspace/rafi_ws/devel
+
+Name: joy_base_control
+Description: Description of joy_base_control
+Version: 0.0.0
+Cflags: -I/home/brazo/workspace/rafi_ws/src/joy_base_control/include
+Libs: -L${prefix}/lib -ljoy_base_control
+Requires: geometry_msgs roscpp sensor_msgs
