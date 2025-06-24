@@ -1,0 +1,13 @@
+<launch>
+    <!-- Lanzar el script de guardado de mapas -->
+    <node pkg="mapping" type="saving_map.py" name="saving_map" output="screen"/>
+
+    <!-- Lanzar los dos LiDAR -->
+    <include file="$(find rplidar_ros)/launch/dual_rplidar_c1.launch"/>
+
+    <!-- Lanzar Hector SLAM -->
+    <include file="$(find hector_slam_launch)/launch/tutorial.launch"/>
+
+    <!-- Lanzar teleoperación -->
+    <include file="$(find rafi_launch_files)/launch/rafi_teleop_base.launch"/>
+</launch>

@@ -1,0 +1,33 @@
+<launch>
+
+  <!-- Declarar argumento del nombre del mapa (pasado desde el script Bash) -->
+  <arg name="map_name" />
+
+  <!-- Guardar como parámetro global por si se usa en otros nodos -->
+  <param name="map_name" value="$(arg map_name)" />
+
+  <!-- Nodo que carga el mapa -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/brazo/workspace/rafi_ws/src/mapping/maps_hub/$(arg map_name).yaml" />
+
+  <!-- RPLIDAR dual -->
+  <include file="$(find rplidar_ros)/launch/dual_rplidar_c1.launch" />
+
+  <!-- Teleoperador base -->
+  <node pkg="roboclaw_node" type="roboclaw_node.py" name="roboclaw_node" output="screen" />
+
+  <!-- rf2o odometry -->
+  <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch" />
+
+   <!--- Run AMCL --> 
+    <include file="$(find amcl)/examples/amcl_omni.launch" />
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find move_base)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find move_base)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find move_base)/config/local_costmap.yaml" command="load" />
+    <rosparam file="$(find move_base)/config/global_costmap.yaml" command="load" /> 
+    <rosparam file="$(find move_base)/config/base_local_planner.yaml" command="load" />
+ </node>
+
+
+</launch>

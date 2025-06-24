@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/opt/ros/noetic/include/**",
+                "~/**",
+                "~/libfranka/include/franka"
+            ]
+        }
+    ],
+    "version": 4
+}

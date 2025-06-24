@@ -1,0 +1,25 @@
+# Axis mapping
+
+#   control de posicion
+axis_position_map: 
+  x: 1
+  y: 0
+  z: 4
+#   control de orientacion
+axis_orientation_map:
+  x: 0
+  y: 1
+  z: 4
+
+# Button mapping
+change_z_button: 0
+enable_mov_position: 4
+enable_mov_orientation: 5
+orientation_button: 9
+home_button: 8
+increment_velocity: 6
+decrement_velocity: 7
+
+# Velocidad maxima
+position_max_displacement_in_a_second: 12.5
+orientation_max_displacement_in_a_second: 50

@@ -1,0 +1,56 @@
+<launch>
+  <!-- Argumentos para configurar las entradas -->
+  <arg name="serial_port1" default="/dev/ttyUSB0"/>
+  <arg name="serial_port2" default="/dev/ttyUSB1"/>
+    
+  <arg name="frame_id1" default="laser_1"/>
+  <arg name="frame_id2" default="laser_2"/>
+
+  <arg name="angulo_minimo1" default="0.0"/>
+  <arg name="angulo_minimo2" default="0.0"/>
+  
+  <arg name="angulo_maximo1" default="360.0"/>
+  <arg name="angulo_maximo2" default="360.0"/>
+
+  <!-- Nodo 1: RPLIDAR -->
+  <node name="rplidarNode1" pkg="rplidar_ros" type="rplidarNode" output="screen">
+    <param name="serial_port" type="string" value="$(arg serial_port1)"/>  
+    <param name="serial_baudrate" type="int" value="460800"/>
+    <param name="frame_id" type="string" value="$(arg frame_id1)"/>
+    <param name="inverted" type="bool" value="false"/>
+    <param name="angle_compensate" type="bool" value="true"/>
+    <param name="scan_frequency" type="double" value="10.0"/>
+    <param name="scan_mode" type="string" value="Standard"/>
+    <param name="angulo_maximo" type="double" value="$(arg angulo_maximo1)"/>
+    <param name="angulo_minimo" type="double" value="$(arg angulo_minimo1)"/>
+    <remap from="/scan" to="/scan1"/>    
+  </node>
+
+  <!-- Nodo 2: RPLIDAR -->
+  <node name="rplidarNode2" pkg="rplidar_ros" type="rplidarNode" output="screen">
+    <param name="serial_port" type="string" value="$(arg serial_port2)"/>  
+    <param name="serial_baudrate" type="int" value="460800"/>
+    <param name="frame_id" type="string" value="$(arg frame_id2)"/>
+    <param name="inverted" type="bool" value="false"/>
+    <param name="angle_compensate" type="bool" value="true"/>
+    <param name="scan_frequency" type="double" value="10.0"/>
+    <param name="scan_mode" type="string" value="Standard"/>
+    <param name="angulo_maximo" type="double" value="$(arg angulo_maximo2)"/>
+    <param name="angulo_minimo" type="double" value="$(arg angulo_minimo2)"/>
+    <remap from="/scan" to="/scan2"/>    
+  </node>
+
+  <!-- Transformaciones estáticas para ambos LiDARs -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="static_tf_lidar1" args="-0.2242 0.1692 0.01 0.02 0 0 base_link laser_1" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="static_tf_lidar2" args="0.3038 -0.1642 0 3.1416 0 0 base_link laser_2" />
+
+  <!-- Fusión de las mediciones de ambos lidar-->
+  <include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch" />
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+      <remap from="/scan" to="/scan_prefilter" />
+      <remap from="/scan_filtered" to="/scan" />
+      <rosparam command="load" file="$(find laser_filters)/examples/box_filter.yaml" />
+  </node>
+
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+
+  <!-- RPLIDAR dual -->
+  <include file="$(find rplidar_ros)/launch/dual_rplidar_c1.launch" />
+
+  <!-- Teleoperador base -->
+  <node pkg="roboclaw_node" type="roboclaw_node.py" name="roboclaw_node" output="screen" />
+
+  <!-- rf2o odometry -->
+  <include file="$(find rf2o_laser_odometry)/launch/rf2o_laser_odometry.launch" />
+</launch>
