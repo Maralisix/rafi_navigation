@@ -1,0 +1,7 @@
+image: /home/brazo/workspace/rafi_ws/src/mapping/maps_hub/3506L2_4096_10.pgm
+resolution: 0.010000
+origin: [-20.480005, -20.480005, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
